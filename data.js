@@ -1,5 +1,6 @@
-// Mock data provider. Replace this export with normalized API or CSV records later;
-// the search and scoring code only relies on this shared field shape.
+import { kagglePlayers } from "./data.generated.js";
+
+// Featured fallback records share the same normalized shape as imported data.
 const featuredPlayers = [
  {name:"Miloš Kerkez",club:"Bournemouth",country:"HUN",age:22,position:"Midfielder",marketValue:35,goalsPer90:.08,assistsPer90:.17,xGPer90:.1,xAPer90:.16,tacklesPer90:2.7,interceptionsPer90:1.2,progressiveCarriesPer90:3.4,progressivePassesPer90:4.5,successfulDribblesPer90:1.6,foulsPer90:1.8,pressuresPer90:18.8},
  {name:"Archie Gray",club:"Tottenham",country:"ENG",age:20,position:"Midfielder",marketValue:38,goalsPer90:.03,assistsPer90:.1,xGPer90:.05,xAPer90:.12,tacklesPer90:2.4,interceptionsPer90:1.5,progressiveCarriesPer90:2.6,progressivePassesPer90:6.8,successfulDribblesPer90:1.1,foulsPer90:1.2,pressuresPer90:17.1},
@@ -36,4 +37,4 @@ const generatedProspects=prospectNames.map((name,index)=>{
   successfulDribblesPer90:round(.4+progression/5),foulsPer90:round(.5+defensive/12),pressuresPer90:round(8+defensive*.9)};
 });
 
-export const players=[...featuredPlayers,...generatedProspects];
+export const players=kagglePlayers.length?kagglePlayers:[...featuredPlayers,...generatedProspects];
